@@ -14,7 +14,7 @@ database = Databases(client)
 
 async def redirect_url(context, url_id):
     try:
-        document = database.get_document(database_id=database_id, collection_id=collection_id, document_id=url_id)
+        document = database.get_document(database_id=database_id, collection_id=collection_id, shortenedURL=url_id)
         original_url = document['originalURL']
         return context.res.redirect(original_url)
     except Exception as e:
@@ -25,7 +25,7 @@ async def main(context=None):
     url_id = "exampleAlias"
 
     if not url_id:
-        return context.res.json({'error': 'URL ID is required'}, status=400)
+        return context.res.json({'error': 'URL ID is required'})
 
     response = await redirect_url(context, url_id)
     return response
