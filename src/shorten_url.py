@@ -32,7 +32,7 @@ def shorten_url(context,original_url, custom_alias=None, expiration_time=None, u
 
 async def main(context=None):
     payload = json.loads(context.req.body_raw)
-    context.log(payload)
+    context.log(payload.get('originalURL'))
     originalURL = payload.originalURL
     user_id = payload.user_id
     custom_alias = payload.custom_alias
