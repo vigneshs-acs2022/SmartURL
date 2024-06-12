@@ -1,33 +1,27 @@
-import random
-import string
-from appwrite.services.databases import Databases
-from appwrite_client import get_client
+from appwrite.client import Client
+from appwrite.services.database import Database
+import hashlib
+import datetime
 
-def handler(req, res):
-    client = get_client()
-    database = Databases(client)
-    
-    data = req.json
-    original_url = data.get('originalURL')
-    custom_alias = data.get('alias')
-    user_id = data.get('userID')
-    
-    shortened_url = custom_alias or generate_short_url()
-    
-    result = database.create_document(
-        'databaseId',
-        'URLs',
-        'unique()',
-        {
-            'originalURL': original_url,
-            'shortenedURL': shortened_url,
-            'alias': custom_alias,
-            'expirationDate': None,
-            'userID': user_id
-        }
-    )
-    
-    res.json({'shortenedURL': shortened_url})
+client = Client()
+client.set_endpoint('https://[APPWRITE-ENDPOINT]') \
+      .set_project('[PROJECT-ID]') \
+      .set_key('[API-KEY]')
 
-def generate_short_url(length=6):
-    return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
+database = Database(client)
+
+def shorten_url(original_url, custom_alias=None, expiration_days=None, user_id=None):
+    url_id = custom_alias if custom_alias else hashlib.md5(original_url.encode()).hexdigest()[:6]
+    short_url = f"https://short.url/{url_id}"
+    
+    data = {
+        'original_url': original_url,
+        'short_url': short_url,
+        'custom_alias': custom_alias,
+        'created_at': datetime.datetime.now(),
+        'expiration_date': (datetime.datetime.now() + datetime.timedelta(days=expiration_days)) if expiration_days else None,
+        'user_id': user_id
+    }
+
+    result = database.create_document(collection_id='urls', document_id='unique()', data=data)
+    return result
