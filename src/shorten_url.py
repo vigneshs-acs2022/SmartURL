@@ -38,7 +38,7 @@ async def main(context=None):
     "expiration_time":"2024-06-12 01:01:10"
 }
 
-    payload = json.loads(data)
+    payload = data
     originalURL = payload.get('originalURL')
     user_id = payload.get('user_id')
     custom_alias = payload.get('custom_alias')
