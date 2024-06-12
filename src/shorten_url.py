@@ -4,6 +4,7 @@ import hashlib
 import datetime
 import json
 import asyncio
+import pyshorteners
 
 client = Client()
 client.set_endpoint('https://cloud.appwrite.io/v1') \
@@ -16,7 +17,7 @@ database = Databases(client)
 
 def shorten_url(context,original_url, custom_alias=None, expiration_time=None, user_id=None):
     url_id = custom_alias if custom_alias else hashlib.md5(original_url.encode()).hexdigest()[:6]
-    short_url = f"https://short.url/{url_id}"
+    short_url = pyshorteners.Shortener().tinyurl.short(original_url)
     
     data = {
         'originalURL': original_url,
