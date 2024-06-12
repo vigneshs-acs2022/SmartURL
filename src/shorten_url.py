@@ -27,7 +27,7 @@ def shorten_url(context,original_url, custom_alias=None, expiration_time=None, u
     }
 
     result = database.create_document( database_id=database_id,collection_id=collection_id, document_id='unique()', data=data)
-    return context.res.json(result)
+    return result
 
 
 async def main(context=None):
@@ -44,4 +44,6 @@ async def main(context=None):
     custom_alias = payload.get('custom_alias')
     expiration_time = payload.get('expiration_time')
 
-    shorten_url(context,originalURL,custom_alias,expiration_time,user_id)
+    response = shorten_url(context,originalURL,custom_alias,expiration_time,user_id)
+
+    return context.res.json(response)
