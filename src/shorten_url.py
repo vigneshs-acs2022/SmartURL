@@ -33,10 +33,10 @@ def shorten_url(context,original_url, custom_alias=None, expiration_time=None, u
 async def main(context=None):
     payload = context.req
 
-    originalURL = payload.get('originalURL')
-    user_id = payload.get('user_id')
-    custom_alias = payload.get('custom_alias')
-    expiration_time = payload.get('expiration_time')
+    originalURL = payload.originalURL
+    user_id = payload.user_id
+    custom_alias = payload.custom_alias
+    expiration_time = payload.expiration_time
 
     response = shorten_url(context,originalURL,custom_alias,expiration_time,user_id)
 
