@@ -21,8 +21,8 @@ async def redirect_url(context, url_id):
         return context.res.json({'error': str(e)}, status=404)
 
 async def main(context=None):
-    data = context.req.body  # Assuming the request body contains the payload as JSON
-    url_id = data.get('url_id')
+
+    url_id = "exampleAlias"
 
     if not url_id:
         return context.res.json({'error': 'URL ID is required'}, status=400)
