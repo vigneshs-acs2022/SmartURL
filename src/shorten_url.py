@@ -31,7 +31,8 @@ def shorten_url(context,original_url, custom_alias=None, expiration_time=None, u
 
 
 async def main(context=None):
-
+    data = context.request.json()
+    context.logger.info(json.dumps(data))
     payload = {
     "originalURL": "https://agilecyber.com",
     "user_id": "66694ad10002a9d51628",
