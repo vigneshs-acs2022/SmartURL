@@ -30,7 +30,7 @@ def shorten_url(context,original_url, custom_alias=None, expiration_time=None, u
     return result
 
 
-async def main(req, res, context=None):
+async def main(req,context=None):
     payload = await req.json()
     originalURL = payload.get('originalURL')
     user_id = payload.get('user_id')
