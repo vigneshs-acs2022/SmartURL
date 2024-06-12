@@ -21,7 +21,6 @@ def shorten_url(original_url, custom_alias=None, expiration_time=None, user_id=N
         'original_url': original_url,
         'short_url': short_url,
         'custom_alias': custom_alias,
-        'created_at': datetime.datetime.now(),
         # 'expiration_date': expiration_time.isoformat() if isinstance(expiration_time, datetime) else expiration_time,
         'user_id': user_id
     }
