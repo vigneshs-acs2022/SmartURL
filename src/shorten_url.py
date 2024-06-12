@@ -10,7 +10,7 @@ client.set_endpoint('https://cloud.appwrite.io/v1') \
       .set_project('666927680026e4e78388') \
       .set_key('f00160675e58ed23e0332fecf4a1ff21b84e73fb959c92cd155b2d1607c3333420cc3f742e73732448fa97ff78322b254bd880a8e667293f6ae0bd408fca1d0a91584b065e59b80bedf6daa5ffe5d410378433f7c46b4cffb90cda8a95b0b75f1018eb72f83cf7f8b6d6fbc573c3681e3672c4da76c8c5ca6ac8dd4f8291be5a')
 
-
+database_id = "6669283a00091f8628fa"
 database = Databases(client)
 
 def shorten_url(original_url, custom_alias=None, expiration_time=None, user_id=None):
@@ -26,7 +26,7 @@ def shorten_url(original_url, custom_alias=None, expiration_time=None, user_id=N
         'user_id': user_id
     }
 
-    result = database.create_document(collection_id='urls', document_id='unique()', data=data)
+    result = database.create_document( database_id=database_id,collection_id='urls', document_id='unique()', data=data)
     return result
 
 
