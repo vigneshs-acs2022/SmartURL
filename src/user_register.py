@@ -17,7 +17,7 @@ async def user_register():
     print("User registered successfully")
     return user
 
-async def main():
+async def main(context=None):
     await user_register()
 
 if __name__ == "__main__":
