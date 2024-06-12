@@ -18,7 +18,7 @@ async def redirect_url(context, url_id):
         original_url = document['originalURL']
         return context.res.redirect(original_url)
     except Exception as e:
-        return context.res.json({'error': str(e)}, status=404)
+        return context.res.json({'error': str(e)})
 
 async def main(context=None):
 
