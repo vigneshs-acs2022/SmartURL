@@ -12,7 +12,7 @@ users = Users(client)
 async def user_register():
     name = "vignesh"
     email = "vigneshsankar+12@agilecybersolutions.com"
-    password = "12345"
+    password = "123456789"
     user = await users.create(user_id='unique()', email=email, password=password, name=name)
     print("User registered successfully")
     return user
