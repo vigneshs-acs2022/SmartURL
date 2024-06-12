@@ -35,7 +35,7 @@ async def main(context=None):
     payload = json.loads({
     "originalURL": "https://agilecyber.com",
     "user_id": "66694ad10002a9d51628",
-    "custom_alias": None,
+    "custom_alias": '',
     "expiration_time":"2024-06-12 01:01:10"
 })
     originalURL = payload.get('originalURL')
