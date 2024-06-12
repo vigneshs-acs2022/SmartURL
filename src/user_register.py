@@ -10,8 +10,8 @@ client.set_endpoint('https://cloud.appwrite.io/v1') \
 users = Users(client)
 
 def user_register():
-    name = "vignesh"
-    email = "vigneshsankar+12@agilecybersolutions.com"
+    name = "sakthivel"
+    email = "sakthivel@agilecybersolutions.com"
     password = "123456789"
     user = users.create(user_id='unique()', email=email, password=password, name=name)
     print("User registered successfully")
