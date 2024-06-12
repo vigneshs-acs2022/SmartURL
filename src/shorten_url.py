@@ -19,11 +19,11 @@ def shorten_url(original_url, custom_alias=None, expiration_time=None, user_id=N
     short_url = f"https://short.url/{url_id}"
     
     data = {
-        'original_url': original_url,
-        'short_url': short_url,
-        'custom_alias': custom_alias,
+        'originalURL': original_url,
+        'shortenedURL': short_url,
+        'alias': custom_alias,
         # 'expiration_date': expiration_time.isoformat() if isinstance(expiration_time, datetime) else expiration_time,
-        'user_id': user_id
+        'users': user_id
     }
 
     result = database.create_document( database_id=database_id,collection_id=collection_id, document_id='unique()', data=data)
