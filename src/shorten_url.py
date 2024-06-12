@@ -33,7 +33,7 @@ def shorten_url(original_url, custom_alias=None, expiration_time=None, user_id=N
 async def main(context=None):
     data={
     "originalURL": "https://example.com",
-    "user_id": 1,
+    "user_id": "66694ad10002a9d51628",
     "custom_alias": "exampleAlias",
     "expiration_time":"2024-06-12 01:01:10"
 }
