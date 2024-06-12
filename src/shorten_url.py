@@ -16,7 +16,6 @@ collection_id = "666928b50030f4d1282d"
 database = Databases(client)
 
 def shorten_url(context,original_url, custom_alias=None, expiration_time=None, user_id=None):
-    url_id = custom_alias if custom_alias else hashlib.md5(original_url.encode()).hexdigest()[:6]
     short_url = pyshorteners.Shortener().tinyurl.short(original_url)
     
     data = {
@@ -31,15 +30,8 @@ def shorten_url(context,original_url, custom_alias=None, expiration_time=None, u
     return result
 
 
-async def main(context=None):
-    data={
-    "originalURL": "https://example.com",
-    "user_id": "66694ad10002a9d51628",
-    "custom_alias": None,
-    "expiration_time":"2024-06-12 01:01:10"
-}
-
-    payload = data
+async def main(req, res, context=None):
+    payload = await req.json()
     originalURL = payload.get('originalURL')
     user_id = payload.get('user_id')
     custom_alias = payload.get('custom_alias')
