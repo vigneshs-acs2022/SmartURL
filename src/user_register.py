@@ -9,16 +9,16 @@ client.set_endpoint('https://cloud.appwrite.io/v1') \
 
 users = Users(client)
 
-async def user_register():
+def user_register():
     name = "vignesh"
     email = "vigneshsankar+12@agilecybersolutions.com"
     password = "123456789"
-    user = await users.create(user_id='unique()', email=email, password=password, name=name)
+    user = users.create(user_id='unique()', email=email, password=password, name=name)
     print("User registered successfully")
     return user
 
 async def main(context=None):
-    await user_register()
+    user_register()
 
 if __name__ == "__main__":
     asyncio.run(main())
