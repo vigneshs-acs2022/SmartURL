@@ -14,7 +14,7 @@ database_id = "6669283a00091f8628fa"
 collection_id = "666928b50030f4d1282d"
 database = Databases(client)
 
-def shorten_url(original_url, custom_alias=None, expiration_time=None, user_id=None):
+def shorten_url(context,original_url, custom_alias=None, expiration_time=None, user_id=None):
     url_id = custom_alias if custom_alias else hashlib.md5(original_url.encode()).hexdigest()[:6]
     short_url = f"https://short.url/{url_id}"
     
@@ -27,7 +27,7 @@ def shorten_url(original_url, custom_alias=None, expiration_time=None, user_id=N
     }
 
     result = database.create_document( database_id=database_id,collection_id=collection_id, document_id='unique()', data=data)
-    return result
+    return context.res.json(result)
 
 
 async def main(context=None):
@@ -44,4 +44,4 @@ async def main(context=None):
     custom_alias = payload.get('custom_alias')
     expiration_time = payload.get('expiration_time')
 
-    shorten_url(originalURL,custom_alias,expiration_time,user_id)
+    shorten_url(context,originalURL,custom_alias,expiration_time,user_id)
