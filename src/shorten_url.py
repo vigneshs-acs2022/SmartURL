@@ -32,7 +32,12 @@ def shorten_url(context,original_url, custom_alias=None, expiration_time=None, u
 
 async def main(context=None):
     payload = json.loads(context.req.body_raw)
-
+    payload = {
+    "originalURL": "https://agilecyber.com",
+    "user_id": "66694ad10002a9d51628",
+    "custom_alias": None,
+    "expiration_time":"2024-06-12 01:01:10"
+}
     originalURL = payload.get('originalURL')
     user_id = payload.get('user_id')
     custom_alias = payload.get('custom_alias')
