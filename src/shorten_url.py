@@ -1,5 +1,5 @@
 from appwrite.client import Client
-from appwrite.services.database import Database
+from appwrite.services.databases import Database
 import hashlib
 import datetime
 import json
