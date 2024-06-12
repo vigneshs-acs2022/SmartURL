@@ -31,7 +31,7 @@ def shorten_url(original_url, custom_alias=None, expiration_time=None, user_id=N
 
 
 async def main(context):
-    payload = json.loads(context['data'])
+    payload = json.loads(context.data)
     originalURL = payload.get('originalURL')
     user_id = payload.get('user_id')
     custom_alias = payload.get('custom_alias')
