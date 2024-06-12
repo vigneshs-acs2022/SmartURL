@@ -30,8 +30,15 @@ def shorten_url(original_url, custom_alias=None, expiration_time=None, user_id=N
     return result
 
 
-async def main(context):
-    payload = json.loads(context.data)
+async def main(context=None):
+    data={
+    "originalURL": "https://example.com",
+    "user_id": 1,
+    "custom_alias": "exampleAlias",
+    "expiration_time":"2024-06-12 01:01:10"
+}
+
+    payload = json.loads(data)
     originalURL = payload.get('originalURL')
     user_id = payload.get('user_id')
     custom_alias = payload.get('custom_alias')
