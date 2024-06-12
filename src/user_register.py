@@ -8,6 +8,6 @@ client.set_endpoint('https://cloud.appwrite.io/v1)') \
 
 users = Users(client)
 
-def register_user(email, password, name):
+def main(email, password, name):
     user = users.create(user_id='unique()', email=email, password=password, name=name)
     return user
